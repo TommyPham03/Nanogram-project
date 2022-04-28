@@ -20,19 +20,12 @@ public class NonogramModel {
 	
 	public NonogramModel(int[][] rowClues, int[][] colClues) {
 		// TODO: Implement deepCopy. 
+		
 		// This is simple, and you should not ask about this on Discord.
 		this.rowClues = deepCopy(rowClues);
 		this.colClues = deepCopy(colClues);
 
 		cellStates = initCellStates(getNumRows(), getNumCols());
-	}
-	
-	private int getNumRows() {
-		return 0;
-	}
-
-	private int getNumCols() {
-		return 0;
 	}
 
 	public NonogramModel(File file) throws IOException {
@@ -45,7 +38,7 @@ public class NonogramModel {
 
 		// TODO: Initialize cellStates.
 		// This is simple, and you should not ask about this on Discord.
-		cellStates = initCellStates(numRows, numCols);
+		cellStates = initCellStates(getNumRows(), getNumCols());
 		
 		// TODO: Read in row clues.
 		// This is simple, and you should not ask about this on Discord.
@@ -66,6 +59,38 @@ public class NonogramModel {
 	// TODO: Add more TODOs
 	
 	/* Helper methods */
+	private int getNumRows() {
+		return rowClues.length;
+	}
+
+	private int getNumCols() {
+		return colClues.length;
+	}
+	
+	public CellState getCellState(int rowIdx, int colIdx) {
+		//return the state of the cell with the given row and col
+		return cellStates[rowIdx][colIdx];
+	}
+	
+	public boolean setCellState(int rowIdx, int colIdx, CellState state) {
+		
+	}
+	
+	public void setCellState(int rowIdx, int colIdx, CellState state) {
+		
+	}
+	
+	public int [][] getRowClues(){
+		return deepCopy(rowClues);
+	}
+	
+	public int [][] getColClues(){
+		return deepCopy(colClues);
+	}
+	
+	public 
+
+
 	
 	// This is implemented for you
 	private static CellState[][] initCellStates(int numRows, int numCols) {
@@ -84,7 +109,7 @@ public class NonogramModel {
 	}
 	
 	// TODO: Implement this method
-	private static int[][] deepCopy(int[][] array) {
+	private static int[][] deepCopy(int[][] array) {//got code from https://stackoverflow.com/questions/1564832/how-do-i-do-a-deep-copy-of-a-2d-array-in-java
 		// You can do this in under 10 lines of code. If you ask the internet
 		// "how do I do a deep copy of a 2d array in Java," be sure to cite
 		// your source.
@@ -92,7 +117,16 @@ public class NonogramModel {
 		// we could simply use Arrays.copyOf directly without this helper
 		// method.
 		// Do not ask about this on Discord. You can do this on your own. :)
-		return null;
+		if (array == null) {
+	        return null;
+	    }
+
+	    final int[][] array2 = new int[array.length][];
+	    for (int i = 0; i < array.length; i++) {
+	        array2[i] = Arrays.copyOf(array[i], array[i].length);
+	    }
+	    return array2;
+		
 	}
 	
 	// This method is implemented for you. You need to figure out how it is useful.
