@@ -6,7 +6,12 @@ public class CellState {
 	CellState FILLED;
 	CellState MARKED;
 	
-	public CellState toBoolean(CellState state) {
-		return state;
+	public static boolean toBoolean(CellState state) {
+		//if it is filled return true
+		if(state.FILLED.equals(true)) {
+			return true;
+		}
+		//else return false
+		return false;
 	}
 }
