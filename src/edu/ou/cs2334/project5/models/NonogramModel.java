@@ -27,6 +27,14 @@ public class NonogramModel {
 		cellStates = initCellStates(getNumRows(), getNumCols());
 	}
 	
+	private int getNumRows() {
+		return 0;
+	}
+
+	private int getNumCols() {
+		return 0;
+	}
+
 	public NonogramModel(File file) throws IOException {
 		// Number of rows and columns
 		BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -37,13 +45,14 @@ public class NonogramModel {
 
 		// TODO: Initialize cellStates.
 		// This is simple, and you should not ask about this on Discord.
+		cellStates = initCellStates(numRows, numCols);
 		
 		// TODO: Read in row clues.
 		// This is simple, and you should not ask about this on Discord.
-		
+		readClueLines(reader, rowClues.length);
 		// TODO: Read in column clues.
 		// This is simple, and you should not ask about this on Discord.
-		
+		readClueLines(reader,colClues.length);
 		// Close reader
 		reader.close();
 	}
@@ -51,7 +60,7 @@ public class NonogramModel {
 	public NonogramModel(String filename) throws IOException {
 		// TODO: Fix this constructor
 		// This is simple, and you should not ask about this on Discord.
-		new NonogramModel(new File(filename));
+		this(new File(filename));
 	}
 	
 	// TODO: Add more TODOs
