@@ -19,9 +19,7 @@ public class NonogramModel {
 	private CellState[][] cellStates;
 	
 	public NonogramModel(int[][] rowClues, int[][] colClues) {
-		// TODO: Implement deepCopy. 
-		
-		// This is simple, and you should not ask about this on Discord.
+		//set instance variables
 		this.rowClues = deepCopy(rowClues);
 		this.colClues = deepCopy(colClues);
 
@@ -35,35 +33,27 @@ public class NonogramModel {
 		String[] fields = header.split(DELIMITER);
 		int numRows = Integer.parseInt(fields[IDX_NUM_ROWS]);
 		int numCols = Integer.parseInt(fields[IDX_NUM_COLS]);
-
-		// TODO: Initialize cellStates.
-		// This is simple, and you should not ask about this on Discord.
-		cellStates = initCellStates(getNumRows(), getNumCols());
 		
-		// TODO: Read in row clues.
-		// This is simple, and you should not ask about this on Discord.
-		readClueLines(reader, rowClues.length);
-		// TODO: Read in column clues.
-		// This is simple, and you should not ask about this on Discord.
-		readClueLines(reader,colClues.length);
+		// Initialize cellStates.
+		cellStates = initCellStates(numRows, numCols);
+		
+		//Read in row clues.
+		rowClues = readClueLines(reader, numRows);
+		//Read in column clues.
+		colClues = readClueLines(reader, numCols);
 		// Close reader
 		reader.close();
 	}
 
 	public NonogramModel(String filename) throws IOException {
-		// TODO: Fix this constructor
-		// This is simple, and you should not ask about this on Discord.
 		this(new File(filename));
 	}
-	
-	// TODO: Add more TODOs
-	
-	/* Helper methods */
-	private int getNumRows() {
+
+	public int getNumRows() {
 		return rowClues.length;
 	}
 
-	private int getNumCols() {
+	public int getNumCols() {
 		return colClues.length;
 	}
 	
@@ -80,6 +70,14 @@ public class NonogramModel {
 	}
 	
 	public boolean setCellState(int rowIdx, int colIdx, CellState state) {
+		//check if it is null or if its already solved and return false
+		if(isSolved() || getCellState(rowIdx, colIdx) == null) {
+			return false;
+		}
+		//set the cell state
+		cellStates[rowIdx][colIdx] = state;
+		//return the boolean 
+		return getCellStateAsBoolean(rowIdx, colIdx);
 		
 	}
 	
@@ -104,11 +102,14 @@ public class NonogramModel {
 	}
 	
 	public boolean isRowSolved(int rowIdx) {
-		return Arrays.equals(rowClues[rowIdx], projectCellStatesRow(rowIdx))
+		if(Arrays.equals(rowClues[rowIdx], projectCellStatesRow(rowIdx))) {
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean isColSolved(int colIdx) {
-		return Arrays.equals(colClues[colIdx], projectCellStatesCol(colIdx))
+		return Arrays.equals(colClues[colIdx], projectCellStatesCol(colIdx));
 	}
 	
 	public boolean isSolved() {
@@ -136,9 +137,9 @@ public class NonogramModel {
 	}
 
 	public void resetCells() {
-		//for loop to go through all the cell states and set them to false
+		//for loop to go through all the cell states and set them to EMPTY
 		for(int index = 0; index < cellStates.length; ++index) {
-			cellStates[index] = CellState.EMPTY;
+			cellStates[index] = null;
 		}
 	}
 	
@@ -187,18 +188,28 @@ public class NonogramModel {
 	 * @param rowIdx the given row index
 	 * @return return the projection of the row at the given index
 	 */
-	public List<Integer> projectRow (int rowIdx){
+	public int [] projectCellStatesRow (int rowIdx){
 		int numCols = colClues.length;
 		//make a array with the instance variable
 		boolean [] array = new boolean[numCols];
 		//loop through it 
 		for(int index = 0; index < numCols; ++index) {
 			//set the index of the array to the cell state at that index
-			array[index] = getCell(rowIdx, index);
+			array[index] = getCellStateAsBoolean(rowIdx, index);
 		}
 		
+		
+		//make an int array and a list with the project method
+		List<Integer> list = project(array);
+		int [] arrays = new int[list.size()];
+
+		
+		//turn the values into 0s and 1s depending on true or false
+		for(int index = 0; index < arrays.length; ++index) {
+			arrays[index] = list.get(index);
+		}
 		//call the project method to get the projection and return
-		return project(array);
+		return arrays;
 	}
 	
 	/**
@@ -207,18 +218,27 @@ public class NonogramModel {
 	 * @param colIdx the given column index
 	 * @return return the projection of the column with the given index
 	 */
-	public List<Integer> projectCol(int colIdx){
+	public int [] projectCellStatesCol(int colIdx){
 		int numRows = rowClues.length;
 		//make a array with the instance variable
 				boolean [] array = new boolean[numRows];
 				//loop through it 
 				for(int index = 0; index < numRows; ++index) {
 					//set the index of the array to the cell state at that index
-					array[index] = getCell(index, colIdx);
+					array[index] = getCellStateAsBoolean(index, colIdx);
+					//array[index] = false;
 				}
+				//make an int array and a list with the project method
+				List<Integer> list = project(array);
+				int [] arrays = new int[list.size()];
+
 				
+				//turn the values into 0s and 1s depending on true or false
+				for(int index = 0; index < arrays.length; ++index) {
+					arrays[index] = list.get(index);
+				}
 				//call the project method to get the projection and return
-				return project(array);
+				return arrays;
 	}
 	
 	
@@ -239,23 +259,17 @@ public class NonogramModel {
 		return cellStates;
 	}
 	
-	// TODO: Implement this method
 	private static int[][] deepCopy(int[][] array) {//got code from https://stackoverflow.com/questions/1564832/how-do-i-do-a-deep-copy-of-a-2d-array-in-java
-		// You can do this in under 10 lines of code. If you ask the internet
-		// "how do I do a deep copy of a 2d array in Java," be sure to cite
-		// your source.
-		// Note that if we used a 1-dimensional array to store our arrays,
-		// we could simply use Arrays.copyOf directly without this helper
-		// method.
-		// Do not ask about this on Discord. You can do this on your own. :)
+		//if its null return null
 		if (array == null) {
 	        return null;
 	    }
-
+		//make a 2d array and read everything in as a copy
 	    final int[][] array2 = new int[array.length][];
 	    for (int i = 0; i < array.length; i++) {
 	        array2[i] = Arrays.copyOf(array[i], array[i].length);
 	    }
+	    //return the deep copy
 	    return array2;
 		
 	}
