@@ -71,13 +71,13 @@ public class NonogramModel {
 	
 	public boolean setCellState(int rowIdx, int colIdx, CellState state) {
 		//check if it is null or if its already solved and return false
-		if(isSolved() || getCellState(rowIdx, colIdx) == null) {
+		if(isSolved() || getCellState(rowIdx, colIdx) == state || state == null) {
 			return false;
 		}
 		//set the cell state
 		cellStates[rowIdx][colIdx] = state;
 		//return the boolean 
-		return getCellStateAsBoolean(rowIdx, colIdx);
+		return true;
 		
 	}
 	
@@ -102,13 +102,17 @@ public class NonogramModel {
 	}
 	
 	public boolean isRowSolved(int rowIdx) {
+		//if it is equal to each other return true
+		//if it is true return true
 		if(Arrays.equals(rowClues[rowIdx], projectCellStatesRow(rowIdx))) {
 			return true;
 		}
+		//else return false
 		return false;
 	}
 	
 	public boolean isColSolved(int colIdx) {
+		//check to see if it is equal or not on whether if it is solved
 		return Arrays.equals(colClues[colIdx], projectCellStatesCol(colIdx));
 	}
 	
@@ -136,11 +140,14 @@ public class NonogramModel {
 		return false;
 	}
 
-	public void resetCells() {
-		//for loop to go through all the cell states and set them to EMPTY
-		for(int index = 0; index < cellStates.length; ++index) {
-			cellStates[index] = null;
-		}
+	public void resetCells() {//got help from Jacob
+		//make a nested for loop to go through all the rows and columns
+		for(int row = 0; row < getNumRows(); ++row) {
+			for(int col = 0; col < getNumCols(); ++col) {
+				//set all of it to empty
+				setCellState(row, col, CellState.EMPTY);
+				}
+			}
 	}
 	
 	/**
