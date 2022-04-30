@@ -137,7 +137,7 @@ public class NonogramModel {
 			return false;
 		}
 		// else return true
-		return false;
+		return true;
 	}
 
 	public void resetCells() {//got help from Jacob
