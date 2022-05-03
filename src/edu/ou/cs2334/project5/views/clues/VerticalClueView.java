@@ -18,7 +18,7 @@ public class VerticalClueView extends AbstractOrientedClueView {
 	 * 
 	 * @param colClue an array of column clues
 	 * @param cellLength the length of a cell
-	 * @param width the maximum number of numbered clues among all columns
+	 * @param height the maximum number of numbered clues among all columns
 	 */
 	public VerticalClueView(int[] colClue, int cellLength, int height) {
 		super(Orientation.VERTICAL, STYLE_CLASS, colClue, cellLength, height);

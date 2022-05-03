@@ -5,6 +5,11 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * Class to represent a single nonogram cell that can be shown as empty, filled, or marked
+ * @author Tommy Pham
+ *
+ */
 public class CellView extends StackPane {
 
 	private static final String STYLE_CLASS = "cell-view";
@@ -17,6 +22,11 @@ public class CellView extends StackPane {
 	private Line xLeftLeg = new Line();
 	private Line xRightLeg = new Line();
 
+	/**
+	 * CellView constructor
+	 * 
+	 * @param sideLength the side length
+	 */
 	public CellView(int sideLength) {
 		getStyleClass().add(STYLE_CLASS);
 		setState(CellState.EMPTY);
@@ -24,6 +34,11 @@ public class CellView extends StackPane {
 		getChildren().addAll(background, xLeftLeg, xRightLeg);
 	}
 
+	/**
+	 * set the state 
+	 * 
+	 * @param state the state of the cell
+	 */
 	public void setState(CellState state) {
 		ObservableList<String> styleClasses = getStyleClass();
 		styleClasses.removeAll(
@@ -42,7 +57,12 @@ public class CellView extends StackPane {
 				throw new IllegalArgumentException();
 		}
 	}
-
+	
+	/**
+	 * set the size
+	 * 
+	 * @param sideLength the side length
+	 */
 	public void setSize(int sideLength) {
 		background.setWidth(sideLength);
 		background.setHeight(sideLength);
