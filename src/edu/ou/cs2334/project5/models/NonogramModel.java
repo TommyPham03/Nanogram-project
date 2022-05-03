@@ -8,6 +8,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 
+ * This class encapsualtes the rules and states of the nonogram game 
+ * @author Tommy Pham
+ *
+ */
 public class NonogramModel {
 
 	private static final String DELIMITER = " ";
@@ -18,6 +24,12 @@ public class NonogramModel {
 	private int[][] colClues;
 	private CellState[][] cellStates;
 	
+	/**
+	 * NonogramModel array constructor
+	 * 
+	 * @param rowClues array of rows
+	 * @param colClues array of columns
+	 */
 	public NonogramModel(int[][] rowClues, int[][] colClues) {
 		//set instance variables
 		this.rowClues = deepCopy(rowClues);
@@ -26,6 +38,12 @@ public class NonogramModel {
 		cellStates = initCellStates(getNumRows(), getNumCols());
 	}
 
+	/**
+	 * NonogramModel file constructor
+	 * 
+	 * @param file the given file 
+	 * @throws IOException throw an IOException
+	 */
 	public NonogramModel(File file) throws IOException {
 		// Number of rows and columns
 		BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -45,23 +63,53 @@ public class NonogramModel {
 		reader.close();
 	}
 
+	/**
+	 * NonogramModel string constructor
+	 * 
+	 * @param filename the given string 
+	 * @throws IOException throws an IOException
+	 */
 	public NonogramModel(String filename) throws IOException {
 		this(new File(filename));
 	}
 
+	/**
+	 * numRows getter
+	 * 
+	 * @return return the number of rows
+	 */
 	public int getNumRows() {
 		return rowClues.length;
 	}
 
+	/**
+	 * numCols getter
+	 * 
+	 * @return return the number of colunms
+	 */
 	public int getNumCols() {
 		return colClues.length;
 	}
 	
+	/**
+	 * cell state getter
+	 * 
+	 * @param rowIdx the given row index
+	 * @param colIdx the given column index
+	 * @return return the cell state
+	 */
 	public CellState getCellState(int rowIdx, int colIdx) {
 		//return the state of the cell with the given row and col
 		return cellStates[rowIdx][colIdx];
 	}
 	
+	/**
+	 * Cell state as boolean getter
+	 * 
+	 * @param rowIdx the given row index
+	 * @param colIdx the given column index
+	 * @return return the cell state as a boolean
+	 */
 	public boolean getCellStateAsBoolean(int rowIdx, int colIdx) {
 		//get the cell state
 		CellState state = getCellState(rowIdx, colIdx);
@@ -69,6 +117,14 @@ public class NonogramModel {
 		return CellState.toBoolean(state);
 	}
 	
+	/**
+	 * Cell state setter
+	 * 
+	 * @param rowIdx the given row index
+	 * @param colIdx the given column index
+	 * @param state the state of the cell
+	 * @return return true or false depending on if the puzzle is solved
+	 */
 	public boolean setCellState(int rowIdx, int colIdx, CellState state) {
 		//check if it is null or if its already solved and return false
 		if(isSolved() || getCellState(rowIdx, colIdx) == state || state == null) {
@@ -81,26 +137,54 @@ public class NonogramModel {
 		
 	}
 	
+	/**
+	 * row clues getter
+	 * 
+	 * @return return deep copy of row clues
+	 */
 	public int [][] getRowClues(){
 		//return a deep copy of row clues
 		return deepCopy(rowClues);
 	}
 	
+	/**
+	 * col clues getter
+	 * 
+	 * @return return deep copy of colClues
+	 */
 	public int [][] getColClues(){
 		//return a deep copy of col clues
 		return deepCopy(colClues);
 	}
 	
+	/**
+	 * row clue getter
+	 * 
+	 * @param rowIdx the given row index
+	 * @return return a copy array of row clue
+	 */
 	public int [] getRowClue(int rowIdx){
 		//return a copy
 		return Arrays.copyOf(rowClues[rowIdx], rowClues[rowIdx].length);
 	}
 	
+	/**
+	 * column clue getter
+	 * 
+	 * @param colIdx the given column index
+	 * @return return a copy array of column clue
+	 */
 	public int [] getColClue(int colIdx){
 		//return a copy
 		return Arrays.copyOf(colClues[colIdx], colClues[colIdx].length);
 	}
 	
+	/**
+	 * method to check if row is solved
+	 * 
+	 * @param rowIdx the given row index
+	 * @return return true or false depending on if the row is solved
+	 */
 	public boolean isRowSolved(int rowIdx) {
 		//if it is equal to each other return true
 		//if it is true return true
@@ -111,11 +195,22 @@ public class NonogramModel {
 		return false;
 	}
 	
+	/**
+	 * method to check if column is solved
+	 * 
+	 * @param colIdx the given column index
+	 * @return return true or false depending on if the column is solved
+	 */
 	public boolean isColSolved(int colIdx) {
 		//check to see if it is equal or not on whether if it is solved
 		return Arrays.equals(colClues[colIdx], projectCellStatesCol(colIdx));
 	}
 	
+	/**
+	 * method to check if the puzzle is solved
+	 * 
+	 * @return return true or false depending on if the puzzle is solve
+	 */
 	public boolean isSolved() {
 		//make a boolean value to set to true or false
 		boolean solve = true;
@@ -136,10 +231,14 @@ public class NonogramModel {
 		if(solve == false) {
 			return false;
 		}
+		
 		// else return true
 		return true;
 	}
 
+	/**
+	 * method to set all the cells to empty
+	 */
 	public void resetCells() {//got help from Jacob
 		//make a nested for loop to go through all the rows and columns
 		for(int row = 0; row < getNumRows(); ++row) {

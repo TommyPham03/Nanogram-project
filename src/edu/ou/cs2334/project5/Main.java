@@ -1,5 +1,7 @@
 package edu.ou.cs2334.project5;
 
+import java.io.IOException;
+
 import edu.ou.cs2334.project5.presenters.NonogramPresenter;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -14,12 +16,12 @@ public class Main extends Application {
 		
 	}
 	
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) throws IOException {
 		int defaults = Integer.parseInt(getParameters().getUnnamed().get(DEFAULT_CELL_SIZE));
 		int cell = Integer.parseInt(getParameters().getUnnamed().get(IDX_CELL_SIZE));
 		
 		//make a presenter
-		NonogramPresenter presenter = new NonogramPresenter(row, col, cell);
+		NonogramPresenter presenter = new NonogramPresenter(DEFAULT_CELL_SIZE);
 		
 		//create a scene 
 		Scene scene = new Scene(presenter.getPane());
