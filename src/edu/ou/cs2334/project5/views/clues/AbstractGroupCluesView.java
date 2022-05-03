@@ -48,6 +48,7 @@ public abstract class AbstractGroupCluesView extends FlowPane {
 		
 		// TODO: Possibly add something here. Do not directly discuss your
 		// solution on Discord.
+		setPrefWrapLength(Double.MAX_VALUE);
 	}
 	
 	protected abstract AbstractOrientedClueView makeClue(int[] clue, int cellLength, int numClueUnits);

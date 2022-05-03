@@ -1,6 +1,11 @@
 package edu.ou.cs2334.project5.views.clues;
 import javafx.geometry.Orientation;
 
+/**
+ * 
+ * @author Tommy Pham
+ *
+ */
 public class VerticalClueView extends AbstractOrientedClueView {
 
 	/**

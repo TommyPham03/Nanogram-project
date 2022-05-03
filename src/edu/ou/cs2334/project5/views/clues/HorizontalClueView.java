@@ -4,7 +4,7 @@ import javafx.geometry.Orientation;
 /**
  * Represents a horizontal row of clues.
  * 
- * @author It's you
+ * @author Tommy Pham
  * @version 0.1
  */
 public class HorizontalClueView extends AbstractOrientedClueView {

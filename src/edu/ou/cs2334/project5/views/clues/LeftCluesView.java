@@ -5,7 +5,7 @@ import javafx.geometry.Orientation;
 /**
  * Represents a view containing all row clues displayed to the left of the grid.
  * 
- * @author It's you
+ * @author Tommy Pham
  * @version 0.1
  */
 public class LeftCluesView extends AbstractGroupCluesView {
@@ -28,6 +28,12 @@ public class LeftCluesView extends AbstractGroupCluesView {
 		
 		// TODO: Possibly add something here. Do not directly discuss your
 		// solution on Discord.
+		//makeClue(rowClues[width], cellLength, width);
+	}
+
+	@Override
+	protected AbstractOrientedClueView makeClue(int[] clue, int cellLength, int numClueUnits) {
+		return new HorizontalClueView(clue, cellLength, numClueUnits);
 	}
 
 }

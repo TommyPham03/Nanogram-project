@@ -5,7 +5,7 @@ import javafx.geometry.Orientation;
 /**
  * Represents a view containing all column clues displayed above the grid.
  * 
- * @author It's you
+ * @author Tommy Pham
  * @version 0.1
  */
 public class TopCluesView extends AbstractGroupCluesView {
@@ -28,6 +28,12 @@ public class TopCluesView extends AbstractGroupCluesView {
 		
 		// TODO: Possibly add something here. Do not directly discuss your
 		// solution on Discord.
+		//makeClue(colClues[height], cellLength, height);
+	}
+
+	@Override
+	protected AbstractOrientedClueView makeClue(int[] clue, int cellLength, int numClueUnits) {
+		return new VerticalClueView(clue, cellLength, numClueUnits);
 	}
 
 }
