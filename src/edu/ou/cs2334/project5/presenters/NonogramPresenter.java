@@ -124,16 +124,14 @@ public class NonogramPresenter implements Openable {
 	public void handleRightClick(int rowIdx, int colIdx) {//got help from Ewan Green
 		//make a state variable to check
 		CellState state = model.getCellState(rowIdx, colIdx);
-		//if it is empty set it to marked
-		if(state == CellState.EMPTY) {
+		//if it is empty or filled set it to marked
+		if(state == CellState.EMPTY || state == CellState.FILLED) {
 			updateCellState(rowIdx, colIdx, CellState.MARKED);
 		}
-		//if it is filled set it to marked
-		else if(state == CellState.FILLED) {
-			updateCellState(rowIdx, colIdx, CellState.MARKED);
-		}
+		else {
 		//if marked set to empty
 		updateCellState(rowIdx, colIdx, CellState.EMPTY);
+		}
 	}
 	
 	/**
@@ -224,7 +222,7 @@ public class NonogramPresenter implements Openable {
 	/**
 	 * method to set the actions for the load and reset buttons
 	 */
-	public void configureButtons() {
+	public void configureButtons() {//Collaborated with Ewan Green
 		//set event handler for load
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Load");
