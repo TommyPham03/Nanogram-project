@@ -21,7 +21,7 @@ public class Main extends Application {
 	 * 
 	 * @param args string array
 	 */
-	public void main(String [] args) {
+	public static void main(String [] args) {
 		launch(args);
 		
 	}
@@ -32,11 +32,17 @@ public class Main extends Application {
 	 * @param primaryStage the stage of JavaFX
 	 */
 	public void start(Stage primaryStage) throws IOException {
-		int defaults = Integer.parseInt(getParameters().getUnnamed().get(DEFAULT_CELL_SIZE));
+		//make a cell size to add into the presenter
 		int cell = Integer.parseInt(getParameters().getUnnamed().get(IDX_CELL_SIZE));
 		
-		//make a presenter
-		NonogramPresenter presenter = new NonogramPresenter(DEFAULT_CELL_SIZE);
+		//make a presenter and check what to add depending if it is empty or not
+		NonogramPresenter presenter;
+		if(getParameters().getUnnamed().isEmpty()) {
+			 presenter = new NonogramPresenter(DEFAULT_CELL_SIZE);
+		}
+		else {
+			presenter = new NonogramPresenter(cell);
+		}
 		
 		//create a scene 
 		Scene scene = new Scene(presenter.getPane());

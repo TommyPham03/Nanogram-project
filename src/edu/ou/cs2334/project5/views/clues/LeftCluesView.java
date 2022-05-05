@@ -29,6 +29,7 @@ public class LeftCluesView extends AbstractGroupCluesView {
 		// TODO: Possibly add something here. Do not directly discuss your
 		// solution on Discord.
 		//makeClue(rowClues[width], cellLength, width);
+		this.setPrefWrapLength(Double.MAX_VALUE);
 	}
 
 	@Override

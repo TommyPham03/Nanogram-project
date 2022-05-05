@@ -29,6 +29,7 @@ public class TopCluesView extends AbstractGroupCluesView {
 		// TODO: Possibly add something here. Do not directly discuss your
 		// solution on Discord.
 		//makeClue(colClues[height], cellLength, height);
+		this.setPrefWrapLength(Double.MAX_VALUE);
 	}
 
 	@Override
