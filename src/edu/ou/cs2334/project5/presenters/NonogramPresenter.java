@@ -111,8 +111,10 @@ public class NonogramPresenter implements Openable {
 		if(variable == true) {
 			updateCellState(rowIdx, colIdx, CellState.EMPTY);
 		}
+		else {
 		//if empty set to filled
 		updateCellState(rowIdx, colIdx, CellState.FILLED);
+		}
 	}
 	
 	/**
