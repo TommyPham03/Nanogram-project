@@ -36,21 +36,12 @@ public class CellGridView extends GridPane{
 		getChildren().clear();
 		//initialize
 		cellViews = new CellView [numRows] [numCols];
-		//useless code
-		/*
-		for(int index = 0; index < numRows; index++) {
-			for(int j = 0; j < numCols; j++) {
-				getCellView(numRows, numCols).getChildren().clear();
-			}
-		}	
-		*/
+	
 		//for loops to go through all the arrays
 		for(int index = 0; index < numRows; ++index) {
 			
 			for(int j = 0; j < numCols; ++j) {
 			//add into the gridpane and 2d array
-			//add(cellViews[numRows] [numCols], j, index);
-			//addRow(j, cellViews[index][j]);
 			cellViews[index] [j] = new CellView(cellLength);
 			
 			}

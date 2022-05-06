@@ -179,10 +179,11 @@ public class NonogramView extends BorderPane{
 	 */
 	public void showVictoryAlert() {
 		//make a new alert
-		Alert alert = new Alert(AlertType.INFORMATION, "You Win!");
+		Alert alert = new Alert(AlertType.INFORMATION, "Puzzle Solved");
 		//set the content texts
-		alert.setHeaderText("Puzzle Solved");
-		alert.setContentText("Congratulations!");
+		alert.setHeaderText("Congratulations!");
+		alert.setContentText("You Win!");
+		alert.setTitle("Puzzle Solved");
 		
 		//alert.setAlertType(AlertType.valueOf("You Win!"));
 		
