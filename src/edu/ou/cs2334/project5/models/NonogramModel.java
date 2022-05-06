@@ -243,8 +243,7 @@ public class NonogramModel {
 		//make a nested for loop to go through all the rows and columns
 		for(int row = 0; row < getNumRows(); ++row) {
 			for(int col = 0; col < getNumCols(); ++col) {
-				//set all of it to empty
-				setCellState(row, col, CellState.EMPTY);
+				cellStates[row][col] = CellState.EMPTY;
 				}
 			}
 	}
