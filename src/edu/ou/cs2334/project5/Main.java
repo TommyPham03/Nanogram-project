@@ -52,7 +52,7 @@ public class Main extends Application {
 		//set the scene
 		primaryStage.setScene(scene);
 		//set the title
-		primaryStage.setTitle("name");
+		primaryStage.setTitle("nonussy");
 		//prevent the window from resizing
 		primaryStage.setResizable(false);
 		//show the window

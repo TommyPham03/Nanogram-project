@@ -1,11 +1,12 @@
 package edu.ou.cs2334.project5.views;
 
+
 import edu.ou.cs2334.project5.models.CellState;
 import javafx.scene.layout.GridPane;
 
 /**
  * class that is a GridPane
- * @author Tommy Pham
+ * @author Tommy PhamS
  *
  */
 public class CellGridView extends GridPane{

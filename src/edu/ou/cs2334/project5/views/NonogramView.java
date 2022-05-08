@@ -152,6 +152,9 @@ public class NonogramView extends BorderPane{
 			getStyleClass().add(SOLVED_STYLE_CLASS);
 		}
 		
+		//else {
+			//getStyleClass().removeAll(SOLVED_STYLE_CLASS);
+		//}
 		//otherwise remove all occurrences
 		//getStyleClass().clear();
 	}
