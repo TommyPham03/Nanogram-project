@@ -1,22 +1,10 @@
-# Project 5: Nonogram Player
+# Project: Nonogram Player
 
 > Programming isn't about what you know; it's about what you can figure out.
 > 
 > &mdash;Chris Pine, in *[Learn to Program](https://pine.fm/LearnToProgram/)*
 
-In Project 4, we wrote a program that creates [nonograms](https://en.wikipedia.org/wiki/Nonogram) from [binary images](https://en.wikipedia.org/wiki/Binary_image).
-For our final project, we will write a program that allows us to play those puzzles.
 
-The program can run with zero or one command line argument. In both cases, a
-default puzzle file is loaded. You will need to modify your
-**Run Configuration** arguments to test out different cell sizes.
-
-Running our program with no arguments opens the default puzzle with a cell
-size of 30:
-
-```console
-java Main
-```
 
 ![No Argument Nonogram++](img/nonogram-no-args.PNG)
 
@@ -325,8 +313,7 @@ clicks.
 Several classes for the GUI are provided for you. Some implementations are
 complete and others are almost complete.
 
-Unlike in Project 4, where each GUI class *encapsulated* a subclass of [Pane](https://openjfx.io/javadoc/11/javafx.graphics/javafx/scene/layout/Pane.html), the GUI classes in this project each *extend* a subclass of Pane.
-This makes it more convenient to combine graphical components in different objects because the objects themselves can be added to scenes and panes, rather than having to call methods to access the components (e.g., the getPane method in Project 4).
+
 
 ### NonogramView
 
