@@ -1,4 +1,4 @@
-# Project 5: Not-From-Scratch Nonogram Player
+# Project 5: Nonogram Player
 
 > Programming isn't about what you know; it's about what you can figure out.
 > 
